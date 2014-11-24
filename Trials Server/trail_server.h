@@ -4,7 +4,7 @@
 #include <ServerSocket.h>
 #include <ServerException.h>
 #include <string>
-
+#include <iostream>
 
 using namespace std;
 

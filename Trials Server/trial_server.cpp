@@ -22,6 +22,20 @@ ServerCrash::recieveAndExecute()
   {
     ServerSocket server (41300);
     //magical code
+    while (true)
+    {
+      ServerSocket new_sock;
+      server.accept(new_sock);
+      
+      try
+      {
+	while(true)
+	{
+	  //This is where we send and recieve data! Yay!
+	}
+      }
+      catch (SocketException&){}
+    }
   }
   catch (SocketException& e)
   {

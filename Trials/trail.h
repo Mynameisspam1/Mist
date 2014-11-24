@@ -8,6 +8,7 @@
 #define TRAIL_H
 
 #include <string>
+#include <iostream>
 /*#include <sys/socket.h>
 #include <netinet/in.h>*/
 #include <ClientSocket.h>
