@@ -10,9 +10,13 @@ using namespace std;
 
 class ServerCrash
 {
+private:
     ServerCrash();
     ~ServerCrash();
     
     void recieveAndExecute();
+    
+    static string data;
+    static bool counter;
     
 } trialObj;

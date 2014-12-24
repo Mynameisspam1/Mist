@@ -22,7 +22,11 @@ void ClientCrash::offloadCrash()
   try
   {
     ClientSocket client_socket("localhost", 41300); //Homestuck. This is what the reference
-    //do stuff
+    try
+    {
+      client_socket << "crash now";
+      client_socket >> reply;
+    }
   }
   catch (SocketException& e)
   {

@@ -8,12 +8,12 @@ int main()
 
 ServerCrash::ServerCrash()
 {
-  //WHAT DOES THIS EVEN FUCKING DO?!?!?!!?!?1!/?
+  //Empty for now
 }
 
 ServerCrash::~ServerCrash()
 {
-  //Does stuff, mainly destroys them
+  //Empty for now
 }
 
 ServerCrash::recieveAndExecute()
@@ -21,20 +21,30 @@ ServerCrash::recieveAndExecute()
   try
   {
     ServerSocket server (41300);
-    //magical code
-    while (true)
+    while(true)
     {
       ServerSocket new_sock;
       server.accept(new_sock);
-      
       try
       {
 	while(true)
 	{
-	  //This is where we send and recieve data! Yay!
+	  new_sock >> data;
+	  new_sock << data;
 	}
       }
       catch (SocketException&){}
+      
+      while(counter)
+      {
+	usleep(1);
+	if(data == "crash now")
+	{
+	  likeWindows95();
+	  server.shutdown();
+	  counter = false;
+	}
+      }
     }
   }
   catch (SocketException& e)
