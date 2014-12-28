@@ -1,5 +1,12 @@
 #include "trial_server.h"
 
+//global variables
+
+string data;
+bool counter;
+    
+//not global variables
+    
 int main()
 {
   trialObj.recieveAndExecute();
@@ -16,9 +23,9 @@ ServerCrash::~ServerCrash()
   //Empty for now
 }
 
-ServerCrash::recieveAndExecute()
+void ServerCrash::recieveAndExecute()
 {
-  try
+  /*try
   {
     ServerSocket server (41300);
     while(true)
@@ -41,7 +48,6 @@ ServerCrash::recieveAndExecute()
 	if(data == "crash now")
 	{
 	  likeWindows95();
-	  server.shutdown();
 	  counter = false;
 	}
       }
@@ -50,5 +56,44 @@ ServerCrash::recieveAndExecute()
   catch (SocketException& e)
   {
     std::cout << "Exception was caught here: " << e.description() << endl;
+  }*/
+  
+  try
+    {
+      // Create the socket
+      ServerSocket server ( 413420 );
+
+      while ( true )
+	{
+
+	  ServerSocket new_sock;
+	  server.accept ( new_sock );
+
+	  try
+	    {
+	      while ( true )
+		{
+		  new_sock >> data;
+		  new_sock << data;
+		}
+	    }
+	  catch ( SocketException& ) {}
+
+	}
+    }
+  catch ( SocketException& e )
+    {
+      std::cout << "Exception was caught:" << e.description() << "\nExiting.\n";
+    }
+}
+
+int ServerCrash::likeWindows95()
+{
+  cout << "likeWindows95 is running now:" << endl;
+  while(true)
+  {
+    // Memory leak
+    int * q = new int;
+    // no delete
   }
 }
