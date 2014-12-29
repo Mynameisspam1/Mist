@@ -1,6 +1,12 @@
 //include nessesary boost items
 
-#include "trail.h"
+#include "trial.h"
+
+using namespace std;
+
+//global variables
+string reply;
+//end global variables
 
 int main(){
   crashObj.offloadCrash();
@@ -27,6 +33,8 @@ void ClientCrash::offloadCrash()
       client_socket << "crash now";
       client_socket >> reply;
     }
+    catch (SocketException&){}
+      std::cout << "We received this response from the server:\n\"" << reply << "\"\n";;
   }
   catch (SocketException& e)
   {

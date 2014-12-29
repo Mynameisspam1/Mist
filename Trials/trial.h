@@ -11,8 +11,8 @@
 #include <iostream>
 /*#include <sys/socket.h>
 #include <netinet/in.h> <-- these are included in the files below*/
-#include <ClientSocket.h>
-#include <SocketException.h>
+#include "ClientSocket.h"
+#include "SocketException.h"
 
 //include the nessesary files from Boost and cppnetlib
 
