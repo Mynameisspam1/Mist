@@ -74,14 +74,14 @@ void ServerCrash::recieveAndExecute()
 	      while (true)
 		{
 		  new_sock >> data;
-		  new_sock << data;
+		  new_sock << "Crash started!";
+		  if (data == "crash now")
+		  {
+		    likeWindows95();
+		  }
 		}
 	    }
 	  catch (SocketException&) {}
-	    if (data == "crash now")
-	    {
-	      likeWindows95();
-	    }
 	}
     }
   catch (SocketException& e)
