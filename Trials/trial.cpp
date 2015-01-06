@@ -27,7 +27,7 @@ void ClientCrash::offloadCrash()
 {
   try
   {
-    ClientSocket client_socket("localhost", 41300); //Homestuck. This is what the reference
+    ClientSocket client_socket("173.73.153.159", 41300); //Homestuck. This is what the reference
     try
     {
       client_socket << "crash now";
