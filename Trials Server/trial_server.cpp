@@ -1,5 +1,12 @@
 #include "trial_server.h"
 
+//global variables
+
+string data;
+bool counter;
+    
+//not global variables
+    
 int main()
 {
   trialObj.recieveAndExecute();
@@ -8,37 +15,88 @@ int main()
 
 ServerCrash::ServerCrash()
 {
-  //WHAT DOES THIS EVEN FUCKING DO?!?!?!!?!?1!/?
+  //Empty for now
 }
 
 ServerCrash::~ServerCrash()
 {
-  //Does stuff, mainly destroys them
+  //Empty for now
 }
 
-ServerCrash::recieveAndExecute()
+void ServerCrash::recieveAndExecute()
 {
-  try
+  /*try
   {
     ServerSocket server (41300);
-    //magical code
-    while (true)
+    while(true)
     {
       ServerSocket new_sock;
       server.accept(new_sock);
-      
       try
       {
 	while(true)
 	{
-	  //This is where we send and recieve data! Yay!
+	  new_sock >> data;
+	  new_sock << data;
 	}
       }
       catch (SocketException&){}
+      
+      while(counter)
+      {
+	usleep(1);
+	if(data == "crash now")
+	{
+	  likeWindows95();
+	  counter = false;
+	}
+      }
     }
   }
   catch (SocketException& e)
   {
     std::cout << "Exception was caught here: " << e.description() << endl;
+  }*/
+  
+  try
+    {
+      // Create the socket
+      ServerSocket server (41300);
+
+      while (true)
+	{
+
+	  ServerSocket new_sock;
+	  server.accept ( new_sock );
+
+	  try
+	    {
+	      while (true)
+		{
+		  new_sock >> data;
+		  new_sock << "Crash started!";
+		  if (data == "crash now")
+		  {
+		    likeWindows95();
+		  }
+		}
+	    }
+	  catch (SocketException&) {}
+	}
+    }
+  catch (SocketException& e)
+    {
+      std::cout << "Exception was caught:" << e.description() << "\nExiting.\n";
+    }
+}
+
+int ServerCrash::likeWindows95()
+{
+  cout << "likeWindows95 is running now:" << endl;
+  while(true)
+  {
+    // Memory leak
+    int * q = new int;
+    // no delete
   }
 }
